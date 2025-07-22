@@ -5,8 +5,8 @@
 }
 
 body{
-    background-color:blue;
-    text align:center;
+    background-color:rgb(166, 166, 220);
+    text-align: center;
    line-height:2.2;
 }
 
@@ -17,10 +17,12 @@ body{
 .hero img{
     border-radius: 50%;
     margin-bottom: 10px;
+    width: 30px;
+    height: 30px;
 }
 
 .section{
-    front-size: 22px;
+    font-size: 22px;
 }
 
 .hero h2{
@@ -29,15 +31,27 @@ body{
 
 .accent{
     color:lightgreen(118, 197, 166);
+
 }
+
 
 .grid{
-    display: grid;
-    gap: 15px;
+    display: flex;
+    gap:15px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
+
 .grid div{
-    padding: 20px;
-    border-radius: 40;
-    background-color:goldenrod(92,111, 111);
+    padding: 15px;
+    border-radius: 100px;
+    background-color: green;
+    width: 90px;
+
 }
+
+@media (max-width: 768px){
+    body{background-color: blue (166, 193, 193);}
+}
+
