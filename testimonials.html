@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelvin Ntiri's Portfolio - Testimonials</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #667eea !important;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #667eea !important;
+        }
+
+        .nav-link.active {
+            color: #667eea !important;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 80px 0;
+        }
+
+        .container {
+            max-width: 800px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .title h2 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .underline {
+            width: 100px;
+            height: 4px;
+            background: #ff6b6b;
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .review {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .review::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #ff6b6b);
+        }
+
+        .img-container {
+            margin-bottom: 30px;
+        }
+
+        .img-container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #f8f9fa;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .img-container img:hover {
+            transform: scale(1.1);
+        }
+
+        #author {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        #job {
+            font-size: 1.1rem;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #info {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            font-style: italic;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        #info::before,
+        #info::after {
+            content: '"';
+            font-size: 3rem;
+            color: #667eea;
+            position: absolute;
+            font-family: serif;
+        }
+
+        #info::before {
+            top: -20px;
+            left: -20px;
+        }
+
+        #info::after {
+            bottom: -40px;
+            right: -10px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .prev-btn, .next-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .prev-btn:hover, .next-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .prev-btn:active, .next-btn:active {
+            transform: translateY(0);
+        }
+
+        .testimonial-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #ff6b6b;
+            transform: scale(1.2);
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .title h2 {
+                font-size: 2rem;
+            }
+            
+            .review {
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+            
+            #info::before,
+            #info::after {
+                display: none;
+            }
+            
+            main {
+                padding: 40px 0;
+            }
+        }
+
+        /* Loading animation */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fas fa-code"></i> Kelvin Ntiri</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="index.html#about">About Me</a>
+                    <a class="nav-link" href="index.html#skills">Skills</a>
+                    <a class="nav-link active" aria-current="page" href="testimonials.html">Testimonials</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="container">
+            <div class="title">
+                <h2>What People Say</h2>
+                <div class="underline"></div>
+            </div>
+
+            <article class="review fade-in">
+                <div class="stars" id="stars">★★★★★</div>
+                
+                <div class="img-container">
+                    <img src="https://via.placeholder.com/120x120/667eea/ffffff?text=SM" id="person-img" alt="Client Photo"/>
+                </div>
+
+                <h4 id="author">Sarah Mitchell</h4>
+                <p id="job">Marketing Director</p>
+                <p id="info">
+                    Kelvin's web development skills are outstanding! He created a beautiful, responsive website for our company that exceeded all our expectations. His attention to detail and ability to understand our vision was remarkable.
+                </p>
+
+                <div class="button-container">
+                    <button class="prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i> Prev
+                    </button>
+
+                    <button class="next-btn" id="next-btn">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="testimonial-indicators" id="indicators">
+                    <span class="indicator active" data-index="0"></span>
+                    <span class="indicator" data-index="1"></span>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Testimonials data
+        const reviews = [
+            {
+                name: "Hassan Allassan",
+                job: "Student",
+                img: "https://via.placeholder.com/120x120/667eea/ffffff?text=SM",
+                text: " Kelvin is one of my friends. He is a really nice person.",
+                stars: 5
+            },
+            {
+                name: "Leah Guthrie",
+                job: "Student",
+                img: "https://via.placeholder.com/120x120/764ba2/ffffff?text=MC",
+                text: "Kelvin is nice and a good friend.",
+                stars: 5
+            }
+        ];
+
+        // Current review index
+        let currentItem = 0;
+
+        // DOM elements
+        const img = document.getElementById('person-img');
+        const author = document.getElementById('author');
+        const job = document.getElementById('job');
+        const info = document.getElementById('info');
+        const stars = document.getElementById('stars');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const indicators = document.querySelectorAll('.indicator');
+
+        // Load initial person
+        window.addEventListener('DOMContentLoaded', function() {
+            showPerson(currentItem);
+        });
+
+        // Show person based on item
+        function showPerson(person) {
+            const item = reviews[person];
+            img.src = item.img;
+            author.textContent = item.name;
+            job.textContent = item.job;
+            info.textContent = item.text;
+            stars.textContent = '★'.repeat(item.stars);
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === person);
+            });
+
+            // Add fade in animation
+            const review = document.querySelector('.review');
+            review.classList.remove('fade-in');
+            setTimeout(() => {
+                review.classList.add('fade-in');
+            }, 50);
+        }
+
+        // Show next person
+        function showNextPerson() {
+            currentItem++;
+            if (currentItem > reviews.length - 1) {
+                currentItem = 0;
+            }
+            showPerson(currentItem);
+        }
+
+        // Show previous person
+        function showPrevPerson() {
+            currentItem--;
+            if (currentItem < 0) {
+                currentItem = reviews.length - 1;
+            }
+            showPerson(currentItem);
+        }
+
+        // Button event listeners
+        nextBtn.addEventListener('click', showNextPerson);
+        prevBtn.addEventListener('click', showPrevPerson);
+
+        // Indicator event listeners
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentItem = index;
+                showPerson(currentItem);
+            });
+        });
+
+        // Auto-advance testimonials every 8 seconds
+        setInterval(showNextPerson, 8000);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                showPrevPerson();
+            } else if (e.key === 'ArrowRight') {
+                showNextPerson();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,61 +1,311 @@
-<!DOCTYPE html> <!--THis tells the browser what kind of file we're writing-->
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title> Kelvin's Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelvin's Portfolio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS since external style.css isn't available */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #2c3e50 !important;
+        }
+
+        #greeting {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #3498db;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero img {
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .accent {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            padding: 80px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #3498db;
+            border-radius: 2px;
+        }
+
+        #about {
+            background: #f8f9fa;
+        }
+
+        #about p {
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .grid > div {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .grid > div:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .grid > div:nth-child(1) {
+            border-color: #e74c3c;
+            background: linear-gradient(135deg, #fff 0%, #ffe5e5 100%);
+        }
+
+        .grid > div:nth-child(2) {
+            border-color: #3498db;
+            background: linear-gradient(135deg, #fff 0%, #e5f2ff 100%);
+        }
+
+        .grid > div:nth-child(3) {
+            border-color: #f1c40f;
+            background: linear-gradient(135deg, #fff 0%, #fff9e5 100%);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero img {
+                width: 150px;
+                height: 200px;
+            }
+            
+            .section {
+                padding: 60px 1rem;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-       <p id="greeting"></p>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-        <a class="nav-link" href="#about">Features</a>
-        <a class="nav-link" href="#skills">Skills</a>
-    
-      </div>
-    </div>
-  </div>
-</nav>
-
 <body>
-    <section id="home" class="hero">
-       <img src="gear-two-luffy-steam-v0-uc4o000oharc1.webp" width="200px" height="300px" alt="My Profile Picture"/>
-     <h2>Hi,I am <span class="accent"> Kelvin Ntiri</span></h2>
-<p>I'm a high school students learning web development!</p>
-</section>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <p id="greeting">Welcome to Kelvin's Portfolio</p>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    <a class="nav-link" href="#about">About</a>
+                    <a class="nav-link" href="#skills">Skills</a>
+                    <a class="nav-link" href="testimonials.html">Testimonials</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <img src="https://via.placeholder.com/200x300/667eea/ffffff?text=Kelvin" width="200" height="300" alt="Kelvin's Profile Picture"/>
+        <h2>Hi, I am <span class="accent">Kelvin Ntiri</span></h2>
+        <p>I'm a high school student learning web development!</p>
+        <a href="#about" class="cta-button">
+            <i class="fas fa-arrow-down"></i> Learn More About Me
+        </a>
+    </section>
+
+    <!-- About Section -->
     <section id="about" class="section">
         <h2>About Me</h2>
-        <p>5-6 sentences about yourself</p>
-        </section>
+        <p>
+            I'm a passionate high school student with a keen interest in web development and technology. 
+            Currently learning HTML, CSS, and JavaScript to build my foundation in programming. 
+            I love creating interactive websites and solving coding challenges. 
+            My goal is to become a skilled full-stack developer and contribute to innovative web projects. 
+            When I'm not coding, I enjoy exploring new technologies and staying updated with the latest web development trends. 
+            I'm excited about the endless possibilities that programming offers and look forward to building amazing digital experiences.
+        </p>
+    </section>
     
-    <section id="skills"class="section">
-      <h2>My skills</h2>
-      <div class="grid">
-     <div>HTML</div>
-     <div>Css</div>
-     <div>JavaScript</div>
-</div>
-</section>
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <h2>My Skills</h2>
+        <div class="grid">
+            <div>
+                <i class="fab fa-html5" style="color: #e74c3c; font-size: 2rem; margin-bottom: 1rem;"></i>
+                <br>HTML
+            </div>
+            <div>
+                <i class="fab fa-css3-alt" style="color: #3498db; font-size: 2rem; margin-bottom: 1rem;"></i>
+                <br>CSS
+            </div>
+            <div>
+                <i class="fab fa-js-square" style="color: #f1c40f; font-size: 2rem; margin-bottom: 1rem;"></i>
+                <br>JavaScript
+            </div>
+        </div>
+    </section>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Dynamic greeting based on time
+        function updateGreeting() {
+            const now = new Date();
+            const hour = now.getHours();
+            const greetingElement = document.getElementById('greeting');
+            
+            let greeting;
+            if (hour < 12) {
+                greeting = "Good Morning! Welcome to Kelvin's Portfolio";
+            } else if (hour < 17) {
+                greeting = "Good Afternoon! Welcome to Kelvin's Portfolio";
+            } else {
+                greeting = "Good Evening! Welcome to Kelvin's Portfolio";
+            }
+            
+            greetingElement.textContent = greeting;
+        }
 
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"></script>
-      <script src="script.js"></script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
+        // Initialize greeting when page loads
+        updateGreeting();
+        
+        // Update greeting every minute
+        setInterval(updateGreeting, 60000);
+    </script>
 </body>
 </html>
-
-    
-
-     
